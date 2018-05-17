@@ -2,7 +2,6 @@ const mongoose  = require('mongoose')
 const secretKey = process.env.SECRETKEY_JWT
 const jwt       = require('jsonwebtoken')
 const User      = require('../models/user')
-const Todo      = require('../models/todo')
 
 module.exports = {
   register: (req, res) => {

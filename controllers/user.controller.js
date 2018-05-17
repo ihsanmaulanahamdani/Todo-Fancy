@@ -30,11 +30,11 @@ module.exports = {
 
   updateUser: (req, res) => {
     let { full_name, username, gender, email, role } = req.body
-    let decoded = req.res.locals.decoded
+    let { id } = req.headers
 
     User
       .findOneAndUpdate({
-        _id: decoded.id
+        _id: id
       }, {
         full_name,
         username,
@@ -59,16 +59,16 @@ module.exports = {
   },
 
   deleteUser: (req, res) => {
-    let decoded = req.res.locals.decoded
+    let { id } = req.headers
 
     User
       .findOneAndRemove({
-        _id: decoded.id
+        _id: id
       })
       .then(deletedUser => {
         Todo
           .deleteMany({
-            user: decoded.id
+            user: id
           })
           .then(deletedTodo => {
             res
