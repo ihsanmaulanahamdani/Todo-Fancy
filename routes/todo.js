@@ -1,10 +1,10 @@
 const router = require('express').Router()
 const { createTodo, readTodo, updateTodo, deleteTodo } = require('../controllers/todo.controller')
-const { loginAuthentication, loginAuthorization } = require('../middlewares/auth')
+const { loginAuthentication } = require('../middlewares/auth')
 
-router.post('/', createTodo)
-      .get('/', readTodo)
-      .put('/update/:id', updateTodo)
-      .delete('/delete/:id', deleteTodo)
+router.post('/', loginAuthentication, createTodo)
+      .get('/', loginAuthentication, readTodo)
+      .put('/update/:id', loginAuthentication, updateTodo)
+      .delete('/delete/:id', loginAuthentication, deleteTodo)
 
 module.exports = router

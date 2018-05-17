@@ -16,19 +16,5 @@ module.exports = {
         })
       }
     })
-  },
-
-  loginAuthorization: (req, res, next) => {
-    let decoded = req.res.locals.decoded
-
-    if (decoded.role === 'admin') {
-      next()
-    } else {
-      res
-        .status(403)
-        .json({
-          message: 'user have no access to this site'
-        })
-    }
   }
 }
